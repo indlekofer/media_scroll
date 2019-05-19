@@ -1,6 +1,6 @@
 {
   "name": "@indlekofer/media_scroll",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "media scroll",
   "author": "Daniel Indlekofer <daniel@indlekofer.org>",
   "keywords": [],
@@ -28,10 +28,9 @@
     "nyc": "^13.3.0"
   },
   "dependencies": {
-    "@indlekofer/debounce": "^1.1.0",
+    "@indlekofer/throttle": "^1.0.0",
     "@indlekofer/media": "^1.2.3",
     "@indlekofer/redux-store": "^1.2.0"
-    
   },
   "files": [
     "cjs/"

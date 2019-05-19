@@ -11,7 +11,7 @@ Object.defineProperty(exports, "REDUCER", {
 });
 exports["default"] = exports.unset = exports.setup = exports.config = exports.GET_SCROLL = void 0;
 
-var _debounce = _interopRequireDefault(require("@indlekofer/debounce"));
+var _throttle = _interopRequireDefault(require("@indlekofer/throttle"));
 
 var _reduxStore = _interopRequireDefault(require("@indlekofer/redux-store"));
 
@@ -57,16 +57,16 @@ var config = function config(e) {
 };
 
 exports.config = config;
-var configDebounced = (0, _debounce["default"])(config, 400);
+var configThrottled = (0, _throttle["default"])(config, 50, true);
 
 var setup = function setup() {
-  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') window.addEventListener('scroll', configDebounced);
+  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') window.addEventListener('scroll', configThrottled);
 };
 
 exports.setup = setup;
 
 var unset = function unset() {
-  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') window.removeEventListener('scroll', configDebounced);
+  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') window.removeEventListener('scroll', configThrottled);
 };
 
 exports.unset = unset;

@@ -1,6 +1,6 @@
 import assert from 'assert';
 import store from '@indlekofer/redux-store';
-import { GET_SCROLL, REDUCER, config } from '../src/index';
+import { GET_SCROLL, REDUCER, config, setup, unset } from '../src/index';
 
 function handleChangeTest(done, x, y, prevX, prevY) {
   const state = store.getState()[REDUCER].get(GET_SCROLL)
@@ -10,10 +10,11 @@ function handleChangeTest(done, x, y, prevX, prevY) {
   assert.equal(prevY, state.prevY);
   done();
 }
-describe('config', () => {
+describe('media_scroll', () => {
   var unsubscribe;
 
   beforeEach(() => {
+    global.window = undefined;
     config(undefined, null, null, true);
     config(undefined, null, null, true);
   });
@@ -25,6 +26,26 @@ describe('config', () => {
   it('check config init', (done) => {
     unsubscribe = store.subscribe(handleChangeTest.bind(null, done, null, null, null, null));
     config();
+  });
+  it('check setup config unset', (done) => {
+    unsubscribe = store.subscribe(handleChangeTest.bind(null, done, null, null, null, null));
+    setup();
+    config();
+    unset();
+  });
+  it('check setup config unset with window', () => {
+    let addListeners = {scroll: 0};
+    let remListeners = {scroll: 0};
+    global.window = {
+      addEventListener: function (listener) {addListeners[listener]++},
+      removeEventListener: function (listener) {remListeners[listener]++}
+    };
+    setup();
+    assert.equal(1, addListeners.scroll);
+    assert.equal(0, remListeners.scroll);
+    unset();
+    assert.equal(1, addListeners.scroll);
+    assert.equal(1, remListeners.scroll);
   });
   it('check config values', (done) => {
     unsubscribe = store.subscribe(handleChangeTest.bind(null, done, 1, 2, null, null));
@@ -41,12 +62,10 @@ describe('config', () => {
     config(undefined);
   });
   it('check config values event', (done) => {
-    global.window = undefined;
     unsubscribe = store.subscribe(handleChangeTest.bind(null, done, 1, 2, null, null));
     config({pageX: 1, pageY: 2});
   });
   it('check config values force', (done) => {
-    global.window = undefined;
     unsubscribe = store.subscribe(handleChangeTest.bind(null, done, 3, 4, null, null));
     config({pageX: 1, pageY: 2}, 3, 4, true);
   });

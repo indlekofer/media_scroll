@@ -576,10 +576,6 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@indlekofer/debounce@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@indlekofer/debounce/-/debounce-1.1.0.tgz#66799fa8aab37199bc252c1ce1a4fa43d4cedd3c"
-
 "@indlekofer/media@^1.2.3":
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@indlekofer/media/-/media-1.2.3.tgz#5cd09223e8878d640f78a29af844d95c068d17b2"
@@ -593,6 +589,10 @@
   dependencies:
     redux "^4.0.1"
     redux-thunk "^2.2.0"
+
+"@indlekofer/throttle@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@indlekofer/throttle/-/throttle-1.0.0.tgz#04aff710013d8d2ef3e0f4f385abe0db3f8ee790"
 
 abbrev@1:
   version "1.1.1"

@@ -1,4 +1,4 @@
-import debounce from '@indlekofer/debounce';
+import throttle from '@indlekofer/throttle';
 import store from '@indlekofer/redux-store';
 import { handleChange, REDUCER } from '@indlekofer/media';
 
@@ -24,14 +24,14 @@ export const config = (e, x = null, y = null, force = false) => {
   handleChange(GET_SCROLL, {y, x, prevY, prevX});
 };
 
-const configDebounced = debounce(config, 400);
+const configThrottled = throttle(config, 50, true);
 
 export const setup = () => {
-  if (typeof window == 'object') window.addEventListener('scroll', configDebounced);
+  if (typeof window == 'object') window.addEventListener('scroll', configThrottled);
 };
 
 export const unset = () => {
-  if (typeof window == 'object') window.removeEventListener('scroll', configDebounced);
+  if (typeof window == 'object') window.removeEventListener('scroll', configThrottled);
 };
 
 setup();
