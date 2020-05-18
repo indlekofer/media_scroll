@@ -19,7 +19,7 @@ var _media = require("@indlekofer/media");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var GET_SCROLL = '@indlekofer/media_scroll/GET_SCROLL';
 exports.GET_SCROLL = GET_SCROLL;
@@ -35,12 +35,9 @@ var config = function config(e) {
       prevY = null;
 
   if (force) {//nothing to do
-  } else if (_typeof(e) == 'object') {
-    x = e.pageX;
-    y = e.pageY;
   } else if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') {
-    x = window.pageXOffset;
-    y = window.pageYOffset;
+    x = window.scrollX;
+    y = window.scrollY;
   }
 
   if (typeof state != 'undefined') {

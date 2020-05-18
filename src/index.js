@@ -9,12 +9,9 @@ export const config = (e, x = null, y = null, force = false) => {
   let prevX = null, prevY = null;
   if (force) {
     //nothing to do
-  } else if (typeof e == 'object') {
-    x = e.pageX;
-    y = e.pageY;
   } else if (typeof window == 'object') {
-    x = window.pageXOffset;
-    y = window.pageYOffset;
+    x = window.scrollX;
+    y = window.scrollY;
   }
 
   if (typeof state != 'undefined') {
