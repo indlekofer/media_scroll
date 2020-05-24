@@ -10,8 +10,8 @@ export const config = (e, x = null, y = null, force = false) => {
   if (force) {
     //nothing to do
   } else if (typeof window == 'object') {
-    x = window.scrollX;
-    y = window.scrollY;
+    x = window.pageXOffset;
+    y = window.pageYOffset;
   }
 
   if (typeof state != 'undefined') {

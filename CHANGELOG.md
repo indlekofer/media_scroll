@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## 1.1.2 (2020-05-24)
+
+* support ie 9+
+
 ## 1.1.1 (2020-05-18)
 
 * fixed event

@@ -36,8 +36,8 @@ var config = function config(e) {
 
   if (force) {//nothing to do
   } else if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') {
-    x = window.scrollX;
-    y = window.scrollY;
+    x = window.pageXOffset;
+    y = window.pageYOffset;
   }
 
   if (typeof state != 'undefined') {
