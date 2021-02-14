@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## 1.2.0 (2021-02-14)
+
+* dependencies updated
+* config function parameteres removed
+
 ## 1.1.2 (2020-05-24)
 
 * support ie 9+

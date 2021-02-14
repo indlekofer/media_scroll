@@ -24,18 +24,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 var GET_SCROLL = '@indlekofer/media_scroll/GET_SCROLL';
 exports.GET_SCROLL = GET_SCROLL;
 
-var config = function config(e) {
-  var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  var force = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-
+var config = function config() {
   var state = _reduxStore["default"].getState()[_media.REDUCER].get(GET_SCROLL);
 
   var prevX = null,
-      prevY = null;
+      prevY = null,
+      x = null,
+      y = null;
 
-  if (force) {//nothing to do
-  } else if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') {
+  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') {
     x = window.pageXOffset;
     y = window.pageYOffset;
   }

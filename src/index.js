@@ -4,12 +4,10 @@ import { handleChange, REDUCER } from '@indlekofer/media';
 
 export const GET_SCROLL = '@indlekofer/media_scroll/GET_SCROLL';
 
-export const config = (e, x = null, y = null, force = false) => {
+export const config = () => {
   const state = store.getState()[REDUCER].get(GET_SCROLL);
-  let prevX = null, prevY = null;
-  if (force) {
-    //nothing to do
-  } else if (typeof window == 'object') {
+  let prevX = null, prevY = null, x = null, y = null;
+  if (typeof window == 'object') {
     x = window.pageXOffset;
     y = window.pageYOffset;
   }
