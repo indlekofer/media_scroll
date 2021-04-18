@@ -9,7 +9,7 @@ Object.defineProperty(exports, "REDUCER", {
     return _media.REDUCER;
   }
 });
-exports["default"] = exports.unset = exports.setup = exports.config = exports.GET_SCROLL = void 0;
+exports["default"] = exports.unset = exports.setup = exports.config = exports.init = exports.GET_SCROLL = void 0;
 
 var _throttle = _interopRequireDefault(require("@indlekofer/throttle"));
 
@@ -23,19 +23,30 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 var GET_SCROLL = '@indlekofer/media_scroll/GET_SCROLL';
 exports.GET_SCROLL = GET_SCROLL;
+var __isInitialSetup = true;
 
-var config = function config() {
-  var state = _reduxStore["default"].getState()[_media.REDUCER].get(GET_SCROLL);
-
-  var prevX = null,
-      prevY = null,
-      x = null,
+var init = function init() {
+  var x = null,
       y = null;
 
   if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') {
     x = window.pageXOffset;
     y = window.pageYOffset;
+  } else {
+    x = null;
+    y = null;
   }
+
+  config(x, y);
+};
+
+exports.init = init;
+
+var config = function config(x, y) {
+  var prevX = null,
+      prevY = null;
+
+  var state = _reduxStore["default"].getState()[_media.REDUCER].get(GET_SCROLL);
 
   if (typeof state != 'undefined') {
     prevX = state.x;
@@ -51,20 +62,33 @@ var config = function config() {
 };
 
 exports.config = config;
-var configThrottled = (0, _throttle["default"])(config, 50, true);
+
+var _handleChangeThrottled = (0, _throttle["default"])(init, 50, true);
 
 var setup = function setup() {
-  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') window.addEventListener('scroll', configThrottled);
+  if (!__isInitialSetup) {
+    unset();
+  }
+
+  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') {
+    window.addEventListener('scroll', _handleChangeThrottled);
+  }
+
+  init();
+  __isInitialSetup = false;
 };
 
 exports.setup = setup;
 
 var unset = function unset() {
-  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') window.removeEventListener('scroll', configThrottled);
+  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) == 'object') {
+    window.removeEventListener('scroll', _handleChangeThrottled);
+  }
+
+  __isInitialSetup = true;
 };
 
 exports.unset = unset;
 setup();
-config();
 var _default = GET_SCROLL;
 exports["default"] = _default;

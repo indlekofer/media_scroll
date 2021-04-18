@@ -15,6 +15,8 @@ const mapStateToProps = (state) => {
 
 ## Function exports
 
+### init
+
 ### setup
 
 ### unset
