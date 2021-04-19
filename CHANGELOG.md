@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## 1.3.1 (2021-04-19)
+
+* dependencies updated
+* test
+
 ## 1.3.0 (2021-04-18)
 
 * dependencies updated

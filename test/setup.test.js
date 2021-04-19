@@ -34,18 +34,28 @@ describe('setup', () => {
   it('basic setup should init', (done) => {
     unsubscribe = store.subscribe(handleChangeTest.bind(null, done, 1, 2, null, null));
     setup();
+  });
+
+  it('basic setup should add eventlisteners', () => {
+    setup();
     assert.equal(1, addListeners.scroll);
     assert.equal(0, remListeners.scroll);
   });
 
   it('multiple setup should init again', (done) => {
     setup();
-    assert.equal(1, addListeners.scroll);
-    assert.equal(0, remListeners.scroll);
-
     global.window.pageXOffset = 3;
     global.window.pageYOffset = 4;
     unsubscribe = store.subscribe(handleChangeTest.bind(null, done, 3, 4, 1, 2));
+    setup();
+  });
+
+  it('multiple setup should add and remove eventlisteners', () => {
+    setup();
+    assert.equal(1, addListeners.scroll);
+    assert.equal(0, remListeners.scroll);
+    global.window.pageXOffset = 3;
+    global.window.pageYOffset = 4;
     setup();
     assert.equal(2, addListeners.scroll);
     assert.equal(1, remListeners.scroll);
